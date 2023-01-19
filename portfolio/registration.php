@@ -8,98 +8,138 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <style>
+        form {
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+
+        label {
+            width: 300px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+
+        }
+        label.error {
+            color: red;
+            font-size: 1rem;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+<script>
+    $(document).ready (function () {
+        $("#registration-form").validate();
+    });
+
+</script>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <h3 class="mt-3">User Registration</h3>
-                <form enctype="multipart/form-data" class="row g-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h3 class="mt-3">User Registration</h3>
+            <form id="registration-form"  class="row g-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-                    <div class="mb-3">
-                        <label for="" class="">Full Name</label>
-                        <input type="text" class="form-control" name="fullName" id="" aria-describedby="">
-                       
-                    </div>
+                <div class="mb-3">
+                    <!--                        <label for="" class=""></label>-->
+                    <label for= "fullName"> Full Name </label>
+                    <input type="text" minlength="4"   class="form-control" name="fullName" id="fullName" required>
 
-                    <div class="mb-3">
-                        <label for="" class="">Email</label>
-                        <input type="text" class="form-control" name="email" id="" aria-describedby="">
-                       
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">User Name</label>
-                        <input type="text" class="form-control" name="userName" id="exampleInputEmail1" aria-describedby="emailHelp">
-                       
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Phone</label>
-                        <input type="text" class="form-control" name="phone" id="exampleInputEmail1" aria-describedby="emailHelp">
-                       
-                    </div>
-                   
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                    </div>
+                </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-            <div class="col-md-4"></div>
+                <div class="mb-3">
+                    <label for="" class="">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="" required>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">User Name</label>
+                    <input type="text" class="form-control" minlength="4" name="userName" id="userName" aria-describedby="emailHelp" required>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Phone</label>
+                    <input type="number" minlength="4" class="form-control" name="phone" id="phone" aria-describedby="emailHelp" required>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input minlength="4" type="password" class="form-control" name="password" id="password" required>
+                </div>
+
+                <button onclick="myFunction()" type="button" class="btn btn-primary">Submit</button>
+            </form>
         </div>
-
+        <div class="col-md-4"></div>
     </div>
 
-    <?php
- include 'include/config.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+</div>
 
-    $FullName = $_POST['fullName'];
-    $email = $_POST['email'];
-    $UserName = $_POST['userName'];
-    $Phone = $_POST['phone'];
-    $Password = $_POST['password'];
-
-    //echo $FullName;
-    if(empty($FullName) or empty($email) or empty($UserName) or empty($Phone)  or empty($Password)){
-  
-       echo "<span class='error'>"."Field must not be Empty"."</span>";
-  
-  }else{
-
-    $sql = "INSERT INTO user_details (fullName,email,userName,phone,password1)
-    VALUES ('$FullName','$email',  '$UserName', '$Phone', '$Password')";
-     
-    $result = mysqli_query($con,$sql);
-
-    if($result){
-        // $to_email = $email;
-        // $subject = 'Registration Complete';
-        // $message = 'Hey ! User I am Rafiul Islam ';
-        // $headers = ['From' => $email, 'Reply-To' => $email];
-        // mail($to_email,$subject,$message,$headers);
-        header("location: login.php");
-    }else{
-       
-        echo "Something Went Wrong!";
-    }
-}
-
-}
-?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<script src="./assets/js/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</script>
 
-    <script>
-        $('.dropify').dropify();
-    </script>
+<script>
+    function myFunction() {
+
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const userName = document.getElementById("userName").value;
+        const phone = document.getElementById("phone").value;
+        const password = document.getElementById("password").value;
+       // alert(fullName)
+        //const MyFile = $('#tes_img').prop('files')[0]
+        //console.log(MyFile)
+        // alert(name+profession+description+MyFile)
+        const MyFormData = new FormData();
+
+        MyFormData.append('fullName', fullName);
+        MyFormData.append('email', email);
+        MyFormData.append('userName', userName);
+        MyFormData.append('phone', phone);
+        MyFormData.append('password', password);
+        console.log(MyFormData)
+
+        axios.post('/portfolio_raw_php/portfolio/registratin_test.php',MyFormData ,{
+
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },})
+            .then(function (response) {
+
+                if (response.status == 200) {
+
+                     alert('Registration Successfully Done');
+                     window.location.href = 'login.php'
+
+                    console.log(response)
+                }else{
+                    alert('Registration Failed');
+                }
+
+            })
+            .catch(function (error) {
+
+                alert('Registration Failed');
+                console.log(error)
+
+            });
+
+
+    }
+</script>
+
 </body>
 
 </html>
