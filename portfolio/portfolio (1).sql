@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2023 at 10:06 PM
+-- Generation Time: Jan 19, 2023 at 10:04 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -175,20 +175,23 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `title`, `description`, 
 
 CREATE TABLE `user_details` (
   `id` int(255) NOT NULL,
-  `fullName` int(11) NOT NULL,
-  `email` int(11) NOT NULL,
-  `userName` int(11) NOT NULL,
-  `phone` int(11) NOT NULL,
-  `password1` int(11) NOT NULL
+  `fullName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `userName` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_details`
 --
 
-INSERT INTO `user_details` (`id`, `fullName`, `email`, `userName`, `phone`, `password1`) VALUES
-(1, 0, 0, 0, 1701729512, 12345678),
-(2, 0, 0, 0, 0, 0);
+INSERT INTO `user_details` (`id`, `fullName`, `email`, `userName`, `phone`, `password`) VALUES
+(14, 'Rafiul Islam', 'rafiul15-23265@diu.edu.bd', 'rafiul', '1234', '12345678'),
+(19, 'Rakibul', 'rakib@gmail.com', 'rakib', '1234567', '12345678'),
+(20, 'Robin', 'rakib@gmail.com', 'wwwww', '1111', '12345678910'),
+(21, 'Robin', 'rakib@gmail.com', 'wwwww', '1111', '12345678910'),
+(22, 'Rakibul', 'r@gmail.com', 'ssss', '111111', '12345678');
 
 --
 -- Indexes for dumped tables
@@ -280,7 +283,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
