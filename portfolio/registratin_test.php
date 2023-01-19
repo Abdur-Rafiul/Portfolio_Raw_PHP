@@ -12,24 +12,24 @@ $data= json_decode($req,true);
     $Phone = $_POST['phone'];
     $Password = $_POST['password'];
 
-    echo $FullName;
+    //echo $FullName;
     if(empty($FullName) or empty($email) or empty($UserName) or empty($Phone)  or empty($Password)){
 
-        echo "<span class='error'>Field must not be Empty</span>";
+        echo "0";
 
     }else{
 
-        $sql = "INSERT INTO user_details (fullName,email,userName,phone,password1)
+        $sql = "INSERT INTO user_details (fullName,email,userName,phone,password)
     VALUES ('$FullName','$email',  '$UserName', '$Phone', '$Password')";
 
         $result = mysqli_query($con,$sql);
 
         if($result){
-           echo "Registration Success";
+           echo '1';
 
         }else{
 
-            echo "Something Went Wrong!";
+            echo '0';
         }
 
 

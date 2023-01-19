@@ -28,6 +28,16 @@
             display: block;
             margin-top: 5px;
         }
+
+       body  {
+            background-image: url('assets/img/bm.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+             background-color: #e5c4c4;
+            background-size: cover;
+
+        }
     </style>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
@@ -39,23 +49,23 @@
 
 </script>
 <body>
-    <div class="container">
+    <div class="container img_ba">
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <h3 class="mt-3">User Login</h3>
+                <h3 class="mt-3 text-white">User Login</h3>
                 <form id="login-form" class="row g-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
 
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">User Email</label>
+                        <label for="exampleInputEmail1" class="form-label text-white">User Email</label>
                         <input type="email" class="form-control" name="email" id="email"
                             aria-describedby="emailHelp" required>
                         <div id="emailHelp" class="form-text"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <label for="exampleInputPassword1" class="form-label text-white">Password</label>
                         <input minlength="4" type="password" class="form-control" name="password" id="password" required>
                     </div>
                     <a href="registration.php">Registration</a>

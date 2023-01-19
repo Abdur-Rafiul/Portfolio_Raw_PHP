@@ -30,6 +30,15 @@
             display: block;
             margin-top: 5px;
         }
+        body  {
+            background-image: url('assets/img/bm.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: #e5c4c4;
+            background-size: cover;
+
+        }
     </style>
 </head>
 
@@ -46,35 +55,35 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <h3 class="mt-3">User Registration</h3>
+            <h3 class="mt-3 text-white">User Registration</h3>
             <form id="registration-form"  class="row g-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
                 <div class="mb-3">
                     <!--                        <label for="" class=""></label>-->
-                    <label for= "fullName"> Full Name </label>
+                    <label for= "fullName text-white" class="text-white"> Full Name </label>
                     <input type="text" minlength="4"   class="form-control" name="fullName" id="fullName" required>
 
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="">Email</label>
+                    <label for="" class="text-white">Email</label>
                     <input type="email" class="form-control" name="email" id="email" aria-describedby="" required>
 
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">User Name</label>
+                    <label for="exampleInputEmail1" class="form-label text-white">User Name</label>
                     <input type="text" class="form-control" minlength="4" name="userName" id="userName" aria-describedby="emailHelp" required>
 
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Phone</label>
+                    <label for="exampleInputEmail1" class="form-label text-white">Phone</label>
                     <input type="number" minlength="4" class="form-control" name="phone" id="phone" aria-describedby="emailHelp" required>
 
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input minlength="4" type="password" class="form-control" name="password" id="password" required>
+                    <label for="exampleInputPassword1" class="form-label text-white">Password</label>
+                    <input minlength="8" type="password" class="form-control" name="password" id="password" required>
                 </div>
 
                 <button onclick="myFunction()" type="button" class="btn btn-primary">Submit</button>
@@ -119,9 +128,13 @@
             .then(function (response) {
 
                 if (response.status == 200) {
+                   if(response.data ==1){
+                       alert('Registration Successfully Done');
+                       window.location.href = 'login.php'
+                   }else{
+                       alert('Registration Failed');
+                   }
 
-                     alert('Registration Successfully Done');
-                     window.location.href = 'login.php'
 
                     console.log(response)
                 }else{
